@@ -1,45 +1,37 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
+const photos = [
+  { name: "Mountain", img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600" },
+  { name: "Lake", img: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600" },
+  { name: "Dog", img: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=600" },
+  { name: "Nature", img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600" },
+  { name: "Forest", img: "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=600" },
+  { name: "Coffee", img: "https://images.unsplash.com/photo-1509042239860-f550ce482bb3?w=600" },
+];
 
 function App() {
-  const [photos, setPhotos] = useState([]);
   const [search, setSearch] = useState("");
-  const [selected, setSelected] = useState(null);
-
-  useEffect(() => {
-    fetch("http://localhost:8080/api/photos")
-      .then(res => res.json())
-      .then(data => setPhotos(data));
-  }, []);
-
-  const filtered = photos.filter(p =>
-    p.title.toLowerCase().includes(search.toLowerCase())
+  const filtered = photos.filter((p) =>
+    p.name.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial" }}>
+    <div style={{ padding: 20, fontFamily: "sans-serif" }}>
       <h1>Photos</h1>
-
       <input
-        placeholder="Search chey mama..."
+        placeholder="Search cheyy mama..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        style={{ padding: "10px", width: "300px", marginBottom: "20px", borderRadius: "8px", border: "1px solid #ccc" }}
+        style={{ padding: 10, width: "100%", maxWidth: 300, marginBottom: 20 }}
       />
-
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "15px" }}>
-        {filtered.map((p, i) => (
-          <div key={i} onClick={() => setSelected(p)} style={{ cursor: "pointer", border: "1px solid #ddd", padding: "10px", borderRadius: "10px" }}>
-            <img src={p.url} alt={p.title} style={{ width: "200px", height: "150px", objectFit: "cover", borderRadius: "8px" }} />
-            <p>{p.title}</p>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 15 }}>
+        {filtered.map((p) => (
+          <div key={p.name} style={{ width: 160 }}>
+            <img src={p.img} alt={p.name} style={{ width: "100%", height: 110, objectFit: "cover", borderRadius: 10 }} />
+            <p>{p.name}</p>
           </div>
         ))}
       </div>
-
-      {selected && (
-        <div onClick={() => setSelected(null)} style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", background: "rgba(0,0,0,0.8)", display: "flex", justifyContent: "center", alignItems: "center" }}>
-          <img src={selected.url} alt={selected.title} style={{ maxWidth: "80%", maxHeight: "80%", borderRadius: "10px" }} />
-        </div>
-      )}
     </div>
   );
 }

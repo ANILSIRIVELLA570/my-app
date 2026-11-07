@@ -19,7 +19,7 @@ function App() {
     <div style={{ padding: 20, fontFamily: "sans-serif" }}>
       <h1>Photos</h1>
       <input
-        placeholder="Search cheyy mama..."
+        placeholder="Search photos..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         style={{ padding: 10, width: "100%", maxWidth: 300, marginBottom: 20 }}

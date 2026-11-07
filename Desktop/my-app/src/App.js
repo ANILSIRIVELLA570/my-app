@@ -6,7 +6,7 @@ const photos = [
   { name: "Dog", img: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=600" },
   { name: "Nature", img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600" },
   { name: "Forest", img: "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=600" },
-  { name: "Coffee", img: "https://images.unsplash.com/photo-1509042239860-f550ce482bb3?w=600" },
+  { name: "Coffee", img: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600" },
 ];
 
 function App() {
